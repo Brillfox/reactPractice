@@ -1,0 +1,123 @@
+App.js
+
+import logo from './logo.svg';
+import './App.css';
+import React, { useState } from 'react';
+// importing self made components
+import Person from './Person/Person'
+
+const App = () => {
+
+const [ personsState, setPersonsState ] = useState({
+    persons: [
+      { name: 'Max', age: 28 },
+      { name: 'Manu', age: 29 },
+      { name: 'Stephaine', age: 26 }
+    ]
+    // otherState: 'some other value' 
+  });
+
+  // useState({otherState: 'some other value' }); 
+  // useState('some other value'); // it could be an object, string, boolean, number, array and what ever you need and we can use as many useState as we want
+   
+  const [ otherState, setOtherState ] = useState('some other value');
+  console.log(personsState, otherState);
+  // console.log(personsState);
+
+  const switchNameHandler = () => {
+    // console.log('was clicked');
+    
+    // do not do this: this.state.persons[0].name= 'Maximilian'; 
+    
+    this.setState({
+      // setPersonsState({
+      persons: [
+        { name: 'Maximilian', age: 28 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephaine', age: 27 }
+      ]
+      // otherState: personsState.otherState
+    });
+  
+  
+  }; 
+   
+
+// class App extends Component {
+  
+    return (
+      <div className="App">
+        <h1>Hi, I am a react app</h1>
+        <p>This is really working</p>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
+
+        {/* <button onClick={switchNameHandler}>Switch Name</button> */}
+{/*         
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Racing</Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} /> 
+
+        <Person name={personsState.persons[0].name} age={personsState.persons[0].age} />
+        <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>My Hobbies: Racing</Person>
+        <Person name={personsState.persons[2].name} age={personsState.persons[2].age} /> */}
+
+        <Person 
+        name={this.state.persons[0].name} 
+        age={this.state.persons[0].age} />
+        <Person 
+        name={this.state.persons[1].name} 
+        age={this.state.persons[1].age}
+        click={this.switchNameHandler}>My Hobbies: Racing</Person>
+        <Person 
+        name={this.state.persons[2].name} 
+        age={this.state.persons[2].age} />
+
+      </div>
+    );
+
+// return React.createElement('div', {className: "App"}, React.createElement('h1', {}, 'does it works'));
+
+  }
+
+
+export default App;
+
+
+
+
+Person.js
+
+import React from 'react';
+
+const person = (props) => {
+    return (
+        <div>
+            <p onClick={props.click}>I'm a {props.name} and I'm {props.age} years old</p>
+            <p>{props.children}</p>
+        </div>
+
+    )
+}
+
+export default person;
+
+index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+
